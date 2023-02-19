@@ -62,9 +62,9 @@ img = double(img <0.8); %binary flip colors
 shape = size(img);
 
 %image scaling (constant virtual width wv)
-wv = 20; %mm
+wv = 40; %mm
 pix_density_v = shape(2)/wv; %%pixel/mm
-s = 1/pix_density(2) * pix_density_v /2; %pixel/pixel
+s = 1/pix_density(2) * pix_density_v; %pixel/pixel
 
 %image shift (number of LCD pixel)
 x_shift = 900; %px
@@ -94,9 +94,9 @@ mask = ( (y_pix<(shape(1)-1)).*(y_pix>0) ) .* ( (x_pix<(shape(2)-1)).*(x_pix>0) 
 idx = find(mask);
 
 %interpolate color at virtual pixel
-result(idx) = interp2(img,x_pix(idx),y_pix(idx));
+result(idx) = interp2(img,(x_pix(idx))+1,(y_pix(idx))+1);
 result = result/max(abs(result(:)));
-imwrite(result,['zebra_dv_',num2str(dv),'_d_',num2str(d),'_f_',num2str(f),'.png']);
+imwrite(result,['zebra_dv_',num2str(dv),'_d_',num2str(d,5),'_f_',num2str(f),'.png']);
 
 % display results
 figure(1); title('original'); imshow(pic);
