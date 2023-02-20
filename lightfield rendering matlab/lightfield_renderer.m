@@ -80,7 +80,7 @@ x_offset = xx - p2(1)*p2_lens;
 p1_lens = round(x_offset./p1(1)); %lens number in x-direction
 x_offset = x_offset - p1(1)*p1_lens; %coordinates inside lens in x-direction
 border = (x_offset.^2 + y_offset.^2) > ((abs(x_offset)-p2(1)).^2 + (abs(y_offset)-p2(2)).^2);
-p2_lens = p2_lens + sign(p2_lens).*border;
+%%%p2_lens = p2_lens + sign(p2_lens).*border;
 y_offset = y_offset - sign(y_offset)*p2(2).*border;
 x_offset = x_offset - sign(x_offset)*p2(1).*border;
 
